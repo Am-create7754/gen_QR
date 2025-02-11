@@ -1,27 +1,32 @@
-from flask import Flask, render_template, send_file
+from flask import Flask, render_template, request, send_file, redirect, url_for
 import qrcode
 from io import BytesIO
 
 app = Flask(__name__)
 
+# PayPal Business Email
+PAYPAL_EMAIL = "paypal-email@example.com"
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/generate_qr')
+@app.route('/generate_qr', methods=['POST'])
 def generate_qr():
-    payment_url = "https://useyourOWNURL.com/pay?amount=100"
-
+    amount = request.form.get('amount', '100') #change the amount as per your requirement!
+    payment_url = f"https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business={PAYPAL_EMAIL}&amount={amount}&currency_code=USD"
+    
     qr = qrcode.QRCode(version=1, box_size=10, border=4)
     qr.add_data(payment_url)
     qr.make(fit=True)
     img = qr.make_image(fill='black', back_color='white')
-
+    
     img_io = BytesIO()
     img.save(img_io, 'PNG')
     img_io.seek(0)
-
-    return send_file(img_io, mimetype='image/png', as_attachment=False, attachment_filename='payment_qr.png')
+    
+    return send_file(img_io, mimetype='image/png', as_attachment=False)
 
 if __name__ == '__main__':
     app.run(debug=True)
+
