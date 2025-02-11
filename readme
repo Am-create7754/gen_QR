@@ -1,1 +1,56 @@
+QR Code Payment Generator (Flask + PayPal)
+
+Welcome! 🚀 This is a simple Flask project that generates a QR code for PayPal payments based on the amount you enter. Just type in an amount, hit the button, and get a QR code that directs you to PayPal for payment!
+
+📌 Features:
+
+Enter any amount you want to pay.
+
+Generates a PayPal payment QR code instantly.
+
+Simple and easy-to-use web interface.
+
+Works with any device that can scan QR codes.
+
+🔧 How to Set Up
+
+1️⃣ Install Dependencies
+
+Make sure you have Python installed, then install Flask and qrcode:
+
+pip install flask qrcode[pil]
+
+2️⃣ Run the App
+
+Save the Python script as app.py and run:
+
+python app.py
+
+3️⃣ Open in Browser
+
+Once the app is running, open your browser and go to:
+
+http://127.0.0.1:5000/
+
+💰 How It Works
+
+Enter the amount you want to pay.
+
+Click the "Generate QR Code" button.
+
+Scan the QR code to proceed to PayPal.
+
+🛠 Customize Your PayPal Email
+
+In app.py, replace this line with your actual PayPal business email:
+
+PAYPAL_EMAIL = "your-paypal-email@example.com"
+
+🌟 Why Use This?
+
+No need to manually type PayPal links.
+
+Quick and easy for customers to pay.
+
+Great for small businesses, freelancers, and online sellers!
 
